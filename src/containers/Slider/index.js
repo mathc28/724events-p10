@@ -9,7 +9,7 @@ const Slider = () => {
   const [index, setIndex] = useState(0);
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
     new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
-    //    new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
+    // new Date(evtA.date) < new Date(evtB.date) ? -1 : 1 event le plus récent au plus vieux
 
 );
   const nextCard = () => {
@@ -46,15 +46,14 @@ const Slider = () => {
             <div className="SlideCard__pagination">
               {byDateDesc.map((_, radioIdx) => (
                 <input
-                  // Changement de la key pour qu'elle corresponde à la slide en cours
-                  key={_.date}
+                  // Changement de la key pour qu'elle match à la slide en cours
+                  key={_.title}
                   type="radio"
                   name="radio-button"
                   /*
                     Remplacement de idx par index pour indiquer sur quelle image on se trouve 
                   */
                   checked={index === radioIdx}
-                  // Ajout de readOnly pour retirer erreur console
                   readOnly
                 />
               ))}
