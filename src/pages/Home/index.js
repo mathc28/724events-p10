@@ -13,16 +13,13 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 /* on remplace last par data et on recrée une nvlle cst last */
-/* Utiliser la date pour comparer et trouver la prestation la plus récente */
+/* Utiliser la date pour comparer et trouver la prestation la plus récente en s'inspirant de la cst byDateDesc avec le sort et les evtA evtB */
+
 
 
 const Page = () => {
   const {data} = useData()
-  const last =
-    data && data.events && data.events.length > 0
-    ? data.events[data.events.length - 1]
-    : null;
-  console.log (last)
+  const last = data?.events.sort((evtA, evtB) => new Date(evtB.date) - new Date(evtA.date))[0];
 
   return <>
     <header>
